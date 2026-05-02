@@ -2,14 +2,12 @@
   "name": "portfolio-fullstack",
   "version": "1.0.0",
   "description": "Full-stack portfolio with React frontend and Node.js backend",
-  "main": "BACKEND/server.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd BACKEND && npm run dev",
     "client": "cd FRONTEND && npm run dev",
     "build": "cd FRONTEND && npm install && npm run build",
     "start": "node BACKEND/server.js",
-    "install-all": "npm install && cd BACKEND && npm install && cd ../FRONTEND && npm install",
     "vercel-build": "cd FRONTEND && npm install && npm run build"
   },
   "devDependencies": {
