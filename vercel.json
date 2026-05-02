@@ -1,0 +1,37 @@
+﻿{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "FRONTEND/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "FRONTEND/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/FRONTEND/dist/assets/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|woff|woff2|ttf|eot))",
+      "dest": "/FRONTEND/dist/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/FRONTEND/dist/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
