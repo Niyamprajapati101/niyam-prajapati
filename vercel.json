@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.js",
+      "src": "BACKEND/server.js",
       "use": "@vercel/node"
     },
     {
@@ -16,22 +16,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/FRONTEND/dist/assets/$1"
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|woff|woff2|ttf|eot))",
-      "dest": "/FRONTEND/dist/$1"
+      "dest": "BACKEND/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/FRONTEND/dist/index.html"
+      "dest": "FRONTEND/dist/$1"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
