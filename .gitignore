@@ -1,0 +1,104 @@
+# Dependencies
+node_modules/
+/node_modules
+client/node_modules/
+server/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+client/dist/
+client/build/
+dist/
+build/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.fleet/
+.vscode-test/
+
+# OS files
+*.log
+.LSOverride
+._*
+.AppleDouble
+.apdisk
+Desktop.ini
+$RECYCLE.BIN/
+
+# Cache and temp files
+.cache/
+.eslintcache
+.stylelintcache
+.next/
+.nuxt/
+*.tsbuildinfo
+
+# Database and data files
+*.db
+*.sqlite
+*.sqlite3
+mongo_data/
+data/
+.mongodb/
+
+# Local development
+.env.*.local
+.vscode-settings.json
+start-dev.bat.bak
+
+# Vite specific
+vite-env.d.ts.bak
+
+# Node version managers
+.nvm
+.nvmrc.bak
+
+# Misc
+.turbo/
+dist-ssr/
+coverage/
+*.pid
+*.seed
+*.pid.lock
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# dotenv environment variables file
+.env*.local
+
+# macOS
+.AppleDouble
+.DS_Store
+.LSOverride
+.Spotlight-V100
+.Trashes

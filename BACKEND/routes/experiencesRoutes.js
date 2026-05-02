@@ -1,0 +1,15 @@
+import { Router } from "express";
+import Experience from "../models/Experience.js";
+import { createResourceController } from "../controllers/resourceControllerFactory.js";
+import { protect } from "../middleware/authMiddleware.js";
+
+const router = Router();
+const controller = createResourceController(Experience);
+
+router.get("/", controller.getPublic);
+router.get("/admin/all", protect, controller.getAdmin);
+router.post("/", protect, controller.create);
+router.put("/:id", protect, controller.update);
+router.delete("/:id", protect, controller.remove);
+
+export default router;
