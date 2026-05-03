@@ -44,9 +44,6 @@ app.use(
         "http://127.0.0.1:5173",
         "http://127.0.0.1:5174",
         "https://npprajapati.onrender.com",
-        "https://niyamprajapati01.onrender.com",
-        "https://portfolio-frontend.onrender.com",
-        "https://niyam-prajapati.vercel.app"
       ];
 
       if (allowedOrigins.includes(origin)) {
