@@ -1,10 +1,10 @@
 ﻿services:
-  # Backend API Service
+  # Full-stack service (Frontend + Backend)
   - type: web
     name: npprajapati
     env: node
     plan: free
-    buildCommand: cd BACKEND && npm install
+    buildCommand: npm install && cd FRONTEND && npm install && npm run build && cd ../BACKEND && npm install
     startCommand: cd BACKEND && npm start
     envVars:
       - key: NODE_ENV
