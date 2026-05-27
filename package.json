@@ -1,6 +1,7 @@
 {
   "name": "portfolio-fullstack",
   "version": "1.0.0",
+  "type": "module",
   "description": "Full-stack portfolio with React frontend and Node.js backend",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
