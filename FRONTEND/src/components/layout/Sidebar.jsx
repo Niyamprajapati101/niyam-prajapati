@@ -35,7 +35,7 @@ export default function Sidebar({ name, title }) {
           <img
             src={npLogo}
             alt={`${name} logo`}
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain brightness-0 dark:brightness-100"
           />
         </a>
         <nav className="mt-12 flex flex-1 flex-col items-center gap-6">
@@ -80,7 +80,7 @@ export default function Sidebar({ name, title }) {
             <img
               src={npLogo}
               alt={`${name} logo`}
-              className="h-full w-full object-contain"
+              className="h-full w-full object-contain brightness-0 dark:brightness-100"
             />
           </a>
           <nav className="flex items-center gap-5">
