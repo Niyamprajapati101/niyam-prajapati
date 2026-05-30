@@ -37,7 +37,7 @@ export default function ContactSection({ profile }) {
       setForm(initialForm);
       setStatus({
         loading: false,
-        message: "Message sent successfully. It has been stored in MongoDB.",
+        message: "Message sent successfully! I'll get back to you soon.",
       });
     } catch (error) {
       setStatus({
@@ -55,7 +55,7 @@ export default function ContactSection({ profile }) {
         <SectionHeading
           eyebrow="Contact"
           title="The easiest way to reach out is still a simple, thoughtful message."
-          description="Messages are saved to MongoDB so the admin dashboard can review them later."
+          description="Your message will be delivered directly to my inbox."
         />
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <motion.div
