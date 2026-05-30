@@ -76,11 +76,11 @@ export default function HomePage() {
       />
       <main className="relative z-10 lg:ml-[126px]">
         <HeroSection profile={profile} />
-        <ProjectsSection projects={data.projects} />
+        <ProjectsSection projects={data?.projects || []} />
         <DetailsSection
-          experiences={data.experiences}
-          education={data.education}
-          certifications={data.certifications}
+          experiences={data?.experiences || []}
+          education={data?.education || []}
+          certifications={data?.certifications || []}
         />
         <AboutSection profile={profile} />
         <ContactSection profile={profile} />
