@@ -234,7 +234,7 @@ export default function AdminDashboardPage() {
               type="button"
               onClick={() => {
                 logout();
-                navigate("/admin");
+                navigate("/np");
               }}
               className="inline-flex items-center gap-2 rounded-full bg-[var(--text)] px-5 py-3 text-sm font-semibold text-[var(--bg)]"
             >

@@ -8,9 +8,9 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/admin" element={<AdminLoginPage />} />
+      <Route path="/np" element={<AdminLoginPage />} />
       <Route
-        path="/admin/dashboard"
+        path="/np/dashboard"
         element={
           <ProtectedRoute>
             <AdminDashboardPage />

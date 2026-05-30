@@ -24,20 +24,20 @@ const socials = [
   },
 ];
 
-export default function Sidebar({ name, title, onAdminClick }) {
+export default function Sidebar({ name, title }) {
   return (
     <>
       <aside className="vision-glass-nav fixed left-6 top-6 z-50 hidden h-[calc(100vh-3rem)] w-[92px] px-4 py-6 lg:flex lg:flex-col lg:items-center">
-        <button
-          onClick={onAdminClick}
-          className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] p-1 transition-transform duration-200 hover:scale-105 hover:border-[var(--accent)] cursor-pointer"
+        <a
+          href="#"
+          className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] p-1 transition-transform duration-200 hover:scale-105"
         >
           <img
             src={npLogo}
             alt={`${name} logo`}
             className="h-full w-full object-contain"
           />
-        </button>
+        </a>
         <nav className="mt-12 flex flex-1 flex-col items-center gap-6">
           {navItems.map((item) => (
             <a
@@ -73,8 +73,8 @@ export default function Sidebar({ name, title, onAdminClick }) {
         transition={{ type: "spring", stiffness: 260, damping: 24 }}
       >
         <div className="flex items-center justify-between">
-          <button
-            onClick={onAdminClick}
+          <a
+            href="#"
             className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 active:scale-95"
           >
             <img
@@ -82,7 +82,7 @@ export default function Sidebar({ name, title, onAdminClick }) {
               alt={`${name} logo`}
               className="h-full w-full object-contain"
             />
-          </button>
+          </a>
           <nav className="flex items-center gap-5">
             {navItems.map((item) => (
               <a

@@ -72,7 +72,6 @@ export default function HomePage() {
       <Sidebar
         name={profile.name}
         title={profile.title}
-        onAdminClick={() => navigate("/admin")}
       />
       <main className="relative z-10 lg:ml-[126px]">
         <HeroSection profile={profile} />

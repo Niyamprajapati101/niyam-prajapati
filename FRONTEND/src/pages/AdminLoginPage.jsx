@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 export default function AdminLoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const [form, setForm] = useState({ email: "admin@niyam.dev", password: "admin123" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +23,7 @@ export default function AdminLoginPage() {
     try {
       const data = await loginAdmin(form);
       login(data.token);
-      navigate("/admin/dashboard");
+      navigate("/np/dashboard");
     } catch (requestError) {
       setError(requestError.response?.data?.message || "Login failed.");
     } finally {
