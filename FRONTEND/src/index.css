@@ -113,6 +113,163 @@ select {
   backdrop-filter: blur(20px);
 }
 
+/* VisionOS 3D Glass navigation */
+.vision-glass-nav {
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1.5px 1px rgba(0, 0, 0, 0.05),
+    0 10px 30px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+}
+
+.dark .vision-glass-nav {
+  border-radius: 9999px;
+  background: rgba(16, 21, 22, 0.75); /* Carbon Black translucent */
+  border: 1px solid rgba(84, 230, 212, 0.3); /* Neon Mint */
+  box-shadow: 
+    inset 0 0 10px rgba(84, 230, 212, 0.2), /* Inner Neon Mint glow */
+    0 0 15px rgba(84, 230, 212, 0.15), /* Outer Neon Mint glow */
+    0 15px 35px rgba(16, 21, 22, 0.8); /* Carbon Black drop shadow */
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+/* --- Light Mode (White Glass + Teal Animated Border) CV Button --- */
+.neon-cv-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  background: transparent;
+  border-radius: 9999px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(84, 230, 212, 0.15);
+}
+
+.neon-cv-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(84, 230, 212, 0.25);
+}
+
+/* Spinning teal conic gradient */
+.neon-cv-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  aspect-ratio: 1;
+  background: conic-gradient(from 0deg, transparent 60%, rgba(84, 230, 212, 1) 100%);
+  transform: translate(-50%, -50%);
+  animation: spin-border 4s linear infinite;
+  z-index: 0;
+}
+
+/* Inner white glass background to hide center of gradient */
+.neon-cv-btn::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px; /* Creates the border width */
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  z-index: 0;
+}
+
+@keyframes spin-border {
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes neon-sweep {
+  0% { left: -100%; }
+  40% { left: 200%; }
+  100% { left: 200%; }
+}
+
+.neon-cv-text {
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.neon-cv-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: rgba(84, 230, 212, 0.1);
+  border: 1px solid rgba(84, 230, 212, 0.4);
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.neon-cv-btn:hover .neon-cv-icon {
+  background: rgba(84, 230, 212, 0.2);
+  border-color: rgba(84, 230, 212, 0.8);
+  box-shadow: 0 0 15px rgba(84, 230, 212, 0.3);
+  transform: scale(1.05);
+}
+
+/* --- Dark Mode (Neon Mint & Carbon Black) CV Button --- */
+.dark .neon-cv-btn {
+  background: transparent;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.dark .neon-cv-btn:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* We let the ::before spin (inheriting the light mode spinning teal gradient) */
+
+/* The ::after is the inner Carbon Black background hiding the center */
+.dark .neon-cv-btn::after {
+  inset: 1.5px; /* Creates the border width */
+  background: linear-gradient(180deg, rgba(16, 25, 25, 0.95), rgba(10, 15, 15, 0.98));
+  border-radius: 9999px;
+  transform: none;
+  animation: none;
+  box-shadow: inset 0 -4px 15px rgba(84, 230, 212, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.dark .neon-cv-btn:hover::after {
+  box-shadow: inset 0 -4px 25px rgba(84, 230, 212, 0.4);
+}
+
+.dark .neon-cv-text {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.dark .neon-cv-icon {
+  background: radial-gradient(circle, rgba(84, 230, 212, 0.9), rgba(45, 160, 150, 0.9));
+  border: none;
+  box-shadow: 0 0 25px rgba(84, 230, 212, 0.7);
+}
+
+.dark .neon-cv-btn:hover .neon-cv-icon {
+  box-shadow: 0 0 35px rgba(84, 230, 212, 1);
+}
+
+.delay-sweep::before {
+  animation-delay: -2s !important;
+}
+
 .section-anchor {
   scroll-margin-top: 4rem;
 }

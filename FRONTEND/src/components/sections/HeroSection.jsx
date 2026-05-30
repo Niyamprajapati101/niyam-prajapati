@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FileText, Download } from "lucide-react";
 
 function getHeroTitle(title = "") {
   const words = title.trim().split(/\s+/).filter(Boolean);
@@ -44,6 +45,26 @@ export default function HeroSection({ profile }) {
               <span>{heroTitle[1]}</span>
             </motion.h1>
           </div>
+          
+          <motion.div
+            className="mt-12 flex flex-wrap items-center gap-6 sm:mt-16"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+          >
+            <a href="/CV.pdf" target="_blank" rel="noreferrer" className="neon-cv-btn">
+              <span className="neon-cv-text">Open CV</span>
+              <div className="neon-cv-icon">
+                <FileText size={18} color="black" strokeWidth={2.5} />
+              </div>
+            </a>
+            <a href="/CV.pdf" download="Niyam_Prajapati_CV.pdf" className="neon-cv-btn delay-sweep">
+              <span className="neon-cv-text">Download CV</span>
+              <div className="neon-cv-icon">
+                <Download size={18} color="black" strokeWidth={2.5} />
+              </div>
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

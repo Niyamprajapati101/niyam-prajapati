@@ -27,7 +27,7 @@ const socials = [
 export default function Sidebar({ name, title, onAdminClick }) {
   return (
     <>
-      <aside className="glass-panel fixed left-6 top-6 z-50 hidden h-[calc(100vh-3rem)] w-[92px] rounded-[28px] px-4 py-6 lg:flex lg:flex-col lg:items-center">
+      <aside className="vision-glass-nav fixed left-6 top-6 z-50 hidden h-[calc(100vh-3rem)] w-[92px] px-4 py-6 lg:flex lg:flex-col lg:items-center">
         <button
           onClick={onAdminClick}
           className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] p-1 transition-transform duration-200 hover:scale-105 hover:border-[var(--accent)] cursor-pointer"
@@ -43,7 +43,7 @@ export default function Sidebar({ name, title, onAdminClick }) {
             <a
               key={item.label}
               href={item.href}
-              className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[var(--muted)] transition-colors duration-200 hover:text-[var(--text)] [writing-mode:vertical-rl] rotate-180"
+              className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[var(--muted)] dark:text-[#54E6D4]/70 transition-all duration-200 hover:text-[var(--text)] dark:hover:text-[#54E6D4] dark:hover:drop-shadow-[0_0_8px_rgba(84,230,212,0.6)] [writing-mode:vertical-rl] rotate-180"
             >
               {item.label}
             </a>
@@ -58,7 +58,7 @@ export default function Sidebar({ name, title, onAdminClick }) {
               target="_blank"
               rel="noreferrer"
               aria-label={label}
-              className="text-[var(--muted)] transition hover:text-[var(--text)]"
+              className="text-[var(--muted)] dark:text-[#54E6D4]/70 transition-all hover:text-[var(--text)] dark:hover:text-[#54E6D4] dark:hover:drop-shadow-[0_0_8px_rgba(84,230,212,0.6)]"
             >
               <Icon size={18} />
             </a>
@@ -66,43 +66,37 @@ export default function Sidebar({ name, title, onAdminClick }) {
         </div>
       </aside>
 
-      <motion.div
-        className="glass-panel fixed inset-x-4 top-4 z-50 rounded-full px-4 py-3 lg:hidden"
-        initial={{ y: -18, opacity: 0 }}
+      <motion.header
+        className="vision-glass-nav fixed inset-x-4 top-4 z-50 px-5 py-3 lg:hidden"
+        initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 24 }}
       >
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between">
           <button
             onClick={onAdminClick}
-            className="flex items-center gap-3 transition-transform duration-200 hover:scale-105"
+            className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 active:scale-95"
           >
-            <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] p-0.5">
-              <img
-                src={npLogo}
-                alt={`${name} logo`}
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <div>
-              <p className="font-display text-sm font-bold uppercase tracking-[0.22em]">
-                {name}
-              </p>
-              <p className="text-xs text-[var(--muted)]">{title}</p>
-            </div>
+            <img
+              src={npLogo}
+              alt={`${name} logo`}
+              className="h-full w-full object-contain"
+            />
           </button>
-          <div className="flex items-center gap-2">
+          <nav className="flex items-center gap-5">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]"
+                className="text-[12px] font-medium text-[var(--muted)] dark:text-[#54E6D4]/70 transition-all duration-200 active:text-[var(--text)] dark:active:text-[#54E6D4]"
               >
                 {item.label}
               </a>
             ))}
-          </div>
+            <ThemeToggle />
+          </nav>
         </div>
-      </motion.div>
+      </motion.header>
     </>
   );
 }
