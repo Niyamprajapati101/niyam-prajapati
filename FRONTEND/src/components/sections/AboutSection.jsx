@@ -1,90 +1,127 @@
 import { motion } from "framer-motion";
-import SectionHeading from "../layout/SectionHeading";
-import pfpImage from "../../assets/pfp.jpg";
-import { getTechIcon } from "../../utils/techIcons";
+import { Linkedin, Github, Twitter } from "lucide-react";
+import { useState, useEffect } from "react";
+import img1 from "../../assets/1.jpg";
+import img2 from "../../assets/2.webp";
+import img3 from "../../assets/3.jpg";
 
 export default function AboutSection({ profile }) {
-  return (
-    <section id="about" className="section-anchor px-5 py-20 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="About Me"
-          title="A developer who enjoys sharp systems, clear experiences, and thoughtful motion."
-          description="This section is designed as a warmer pause in the story, with profile details, interests, and personal tone."
-        />
-        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            className="glass-panel overflow-hidden rounded-[32px]"
-          >
-            <img
-              src={pfpImage}
-              alt={profile.name}
-              loading="lazy"
-              className="h-full min-h-[420px] w-full object-cover"
-            />
-          </motion.div>
+  // Split the about text into paragraphs for better readability
+  const sentences = profile?.about?.split(". ").filter(Boolean) || [];
+  const p1 = sentences.slice(0, 2).join(". ") + (sentences.length > 0 ? "." : "");
+  const p2 = sentences.slice(2).join(". ") + (sentences.length > 2 ? "." : "");
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            className="glass-panel rounded-[32px] p-8 sm:p-10"
-          >
-            <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
-              {profile.title}
+  const images = [img1, img2, img3];
+  
+  // Track which index is currently active (center)
+  const [activeIndex, setActiveIndex] = useState(1);
+
+  // Auto-play the carousel to flip images automatically
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3500); // Flips every 3.5 seconds
+    
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  // Helper to get the correct CSS class based on the current active index
+  const getCardClass = (index) => {
+    if (index === activeIndex) return "active";
+    if (index === (activeIndex + 2) % 3) return "left"; // Equivalent to -1 wrap around
+    if (index === (activeIndex + 1) % 3) return "right"; // Equivalent to +1 wrap around
+    return "";
+  };
+
+  const handleCardClick = (index) => {
+    if (index === activeIndex) return;
+    setActiveIndex(index);
+  };
+
+  return (
+    <section
+      id="about"
+      className="section-anchor relative py-24 px-6 lg:px-12 overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 items-center">
+        {/* Left Side: Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-8 z-10"
+        >
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)] mb-4">
+              A QUICK GLANCE
             </p>
-            <div className="rich-text mt-6 space-y-5 text-base leading-8 text-[var(--muted)] sm:text-lg">
-              <p>{profile.about}</p>
-            </div>
-            <div className="mt-10">
-              <h3 className="font-display text-2xl font-bold">Interests</h3>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {profile.interests.map((interest) => (
-                  <span
-                    key={interest}
-                    className="rounded-full border border-[var(--border)] px-4 py-2 text-sm"
-                  >
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {Object.entries(profile.skills).map(([label, values]) => (
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight">
+              Building the bridge between <br className="hidden sm:block" />{" "}
+              ideas and{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] to-[#54e6d4] italic">
+                experiences
+              </span>
+            </h2>
+          </div>
+
+          <div className="space-y-6 text-[var(--muted)] text-sm sm:text-[15px] leading-relaxed max-w-[500px] font-medium">
+            {p1 && <p>{p1}</p>}
+            {p2 && <p>{p2}</p>}
+            <p className="text-[var(--text)] font-semibold">
+              My code is built to last, helping your startup reach the next
+              level!
+            </p>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex gap-5 items-center pt-2">
+            <a
+              href={profile?.linkedin || "#"}
+              className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a
+              href={profile?.githubLink || "#"}
+              className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+              aria-label="GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href={profile?.twitter || "#"}
+              className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+              aria-label="Twitter"
+            >
+              <Twitter size={20} />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Right Side: Interactive 3D Carousel */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full h-[450px] sm:h-[600px] flex items-center justify-center"
+        >
+          <div className="carousel-container">
+            <div className="carousel">
+              {images.map((imgSrc, index) => (
                 <div
-                  key={label}
-                  className="rounded-[22px] border border-[var(--border)] bg-[var(--bg-elevated)] p-5"
+                  key={index}
+                  className={`carousel-card ${getCardClass(index)}`}
+                  onClick={() => handleCardClick(index)}
                 >
-                  <p className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
-                    {label}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {values.map((tech) => {
-                      const IconComponent = getTechIcon(tech);
-                      return (
-                        <div
-                          key={tech}
-                          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm transition-colors hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]"
-                        >
-                          {IconComponent && (
-                            <IconComponent 
-                              size={16} 
-                              className="text-[var(--accent)]" 
-                            />
-                          )}
-                          <span>{tech}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <img src={imgSrc} alt={`About visualization ${index + 1}`} />
                 </div>
               ))}
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

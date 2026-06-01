@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/layout/Sidebar";
 import ScrollProgress from "../components/layout/ScrollProgress";
-import PageLoader from "../components/layout/PageLoader";
 import AnimatedBackdrop from "../components/layout/AnimatedBackdrop";
 import HeroSection from "../components/sections/HeroSection";
 import ProjectsSection from "../components/sections/ProjectsSection";
 import DetailsSection from "../components/sections/DetailsSection";
 import AboutSection from "../components/sections/AboutSection";
-import ContactSection from "../components/sections/ContactSection";
+import BentoSection from "../components/sections/BentoSection";
+import SkillsSection from "../components/sections/SkillsSection";
+import CallToActionSection from "../components/sections/CallToActionSection";
 import { usePortfolioData } from "../hooks/usePortfolioData";
 import pfp from "../assets/pfp.jpg"
 
@@ -30,10 +31,10 @@ const fallbackProfile = {
     { label: "Passion Level", value: "100%" },
   ],
   skills: {
-    frontend: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
-    backend: ["Node.js", "Express.js", "MongoDB"],
-    database: ["MongoDB", "MySQL"],
-    tools: ["Git", "VS Code", "Postman", "Figma"],
+    frontend: ["React", "HTML", "CSS", "Tailwind CSS", "JavaScript"],
+    backend: ["Node.js", "Express.js"],
+    database: ["MongoDB", "Supabase", "PostgreSQL"],
+    tools: ["Git", "Figma", "Postman", "Vercel"],
   },
 };
 
@@ -50,9 +51,6 @@ export default function HomePage() {
     }
   }, [profile]);
 
-  if (loading) {
-    return <PageLoader />;
-  }
 
   if (error && !data) {
     return (
@@ -82,7 +80,9 @@ export default function HomePage() {
           certifications={data?.certifications || []}
         />
         <AboutSection profile={profile} />
-        <ContactSection profile={profile} />
+        <SkillsSection />
+        <BentoSection />
+        <CallToActionSection profile={profile} />
       </main>
     </div>
   );

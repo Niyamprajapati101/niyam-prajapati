@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Instagram } from "lucide-react";
-import npLogo from "../../assets/np-logo.png";
+import npLogoWhite from "../../assets/np-white theme logo.png";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
@@ -33,9 +33,9 @@ export default function Sidebar({ name, title }) {
           className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] p-1 transition-transform duration-200 hover:scale-105"
         >
           <img
-            src={npLogo}
+            src={npLogoWhite}
             alt={`${name} logo`}
-            className="h-full w-full object-contain brightness-0 dark:brightness-100"
+            className="h-full w-full object-contain"
           />
         </a>
         <nav className="mt-12 flex flex-1 flex-col items-center gap-6">
@@ -78,9 +78,9 @@ export default function Sidebar({ name, title }) {
             className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 active:scale-95"
           >
             <img
-              src={npLogo}
+              src={npLogoWhite}
               alt={`${name} logo`}
-              className="h-full w-full object-contain brightness-0 dark:brightness-100"
+              className="h-full w-full object-contain"
             />
           </a>
           <nav className="flex items-center gap-5">

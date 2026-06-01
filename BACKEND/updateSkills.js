@@ -10,10 +10,10 @@ try {
     {}, // Find the first profile
     {
       skills: {
-        frontend: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
-        backend: ["Node.js", "Express.js", "MongoDB"],
-        database: ["MongoDB", "MySQL"],
-        tools: ["Git", "VS Code", "Postman", "Figma"],
+        frontend: ["React", "HTML", "CSS", "Tailwind CSS", "JavaScript"],
+        backend: ["Node.js", "Express.js"],
+        database: ["MongoDB", "Supabase", "PostgreSQL"],
+        tools: ["Git", "Figma", "Postman", "Vercel"],
       }
     },
     { upsert: false }

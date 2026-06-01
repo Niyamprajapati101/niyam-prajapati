@@ -42,7 +42,7 @@ await Profile.create({
   skills: {
     frontend: ["React", "HTML", "CSS", "Tailwind CSS", "JavaScript"],
     backend: ["Node.js", "Express.js"],
-    database: ["MongoDB"],
+    database: ["MongoDB", "Supabase", "PostgreSQL"],
     tools: ["Git", "Figma", "Postman", "Vercel"],
   },
 });

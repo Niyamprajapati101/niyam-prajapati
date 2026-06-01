@@ -370,3 +370,871 @@ select {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* 
+ * Watermelon UI Inspired Button Library
+ * Modular Shadcn-style architecture
+ * Uses strictly the official 6-color palette via theme variables
+ */
+
+.wm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.wm-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.2s ease;
+}
+
+.wm-btn:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* 1. Primary Solid */
+.wm-btn-primary {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.wm-btn-primary:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px var(--border);
+}
+
+.wm-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* 2. Outline */
+.wm-btn-outline {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.wm-btn-outline:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+/* 3. Ghost */
+.wm-btn-ghost {
+    background: transparent;
+    color: var(--text);
+}
+
+.wm-btn-ghost:hover {
+    background: var(--border);
+}
+
+/* 4. Brutalist / Hard Shadow (Very popular in Modern UI) */
+.wm-btn-brutal {
+    background: var(--bg);
+    color: var(--text);
+    border: 2px solid var(--text);
+    box-shadow: 4px 4px 0px var(--text);
+    border-radius: 4px;
+}
+
+.wm-btn-brutal:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--text);
+}
+
+.wm-btn-brutal:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px var(--text);
+}
+
+/* 5. Neumorphic */
+.wm-btn-neu {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.dark .wm-btn-neu {
+    box-shadow: 4px 4px 10px #0a0a0a, -4px -4px 10px #1a1a1a;
+}
+.dark .wm-btn-neu:hover {
+    box-shadow: 6px 6px 15px #0a0a0a, -6px -6px 15px #1a1a1a;
+    transform: translateY(-2px);
+}
+.dark .wm-btn-neu:active {
+    box-shadow: inset 4px 4px 10px #0a0a0a, inset -4px -4px 10px #1a1a1a;
+    transform: translateY(1px);
+}
+
+html:not(.dark) .wm-btn-neu {
+    box-shadow: 4px 4px 10px #cee7ff, -4px -4px 10px #f0f8fe;
+}
+html:not(.dark) .wm-btn-neu:hover {
+    box-shadow: 6px 6px 15px #717478, -6px -6px 15px #f0f8fe;
+    transform: translateY(-2px);
+}
+html:not(.dark) .wm-btn-neu:active {
+    box-shadow: inset 4px 4px 10px #737373, inset -4px -4px 10px #cee7ff;
+    transform: translateY(1px);
+}
+
+/* 6. Sliding Gradient */
+.wm-btn-slide {
+    background: var(--panel);
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.wm-btn-slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    transition: left 0.5s ease;
+}
+
+.wm-btn-slide:hover::before {
+    left: 100%;
+}
+
+.wm-btn-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px var(--border);
+}
+
+/* 7. Storm / Shake — UIverse by mrhyddenn */
+.wm-btn-storm {
+    position: relative;
+    padding: 0.8em 1.6em;
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #737373;
+    text-transform: uppercase;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    color: #f0f8fe;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    z-index: 0;
+    overflow: hidden;
+    letter-spacing: 0.08em;
+    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+.dark .wm-btn-storm {
+    background-color: #1a1a1a;
+    border-color: #737373;
+    color: #f0f8fe;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.6), inset 0 1px 0 #717478;
+}
+
+html:not(.dark) .wm-btn-storm {
+    background-color: #0a0a0a;
+    border-color: #717478;
+    color: #f0f8fe;
+    box-shadow: 0 4px 18px rgba(10,10,10,0.25);
+}
+
+.wm-btn-storm:hover {
+    animation: wm-storm-sh0 0.5s ease-in-out both;
+}
+
+@keyframes wm-storm-sh0 {
+    0%   { transform: rotate(0deg) translate3d(0, 0, 0); }
+    25%  { transform: rotate(7deg) translate3d(0, 0, 0); }
+    50%  { transform: rotate(-7deg) translate3d(0, 0, 0); }
+    75%  { transform: rotate(1deg) translate3d(0, 0, 0); }
+    100% { transform: rotate(0deg) translate3d(0, 0, 0); }
+}
+
+.wm-btn-storm:hover span {
+    animation: wm-storm-text 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+}
+
+@keyframes wm-storm-text {
+    0%   { transform: translate3d(0, 0, 0); }
+    20%  { transform: translate3d(-4px, 0, 0); }
+    40%  { transform: translate3d(4px, 0, 0); }
+    60%  { transform: translate3d(-2px, 0, 0); }
+    80%  { transform: translate3d(2px, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
+.wm-btn-storm::before,
+.wm-btn-storm::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #f0f8fe;
+    opacity: 0;
+    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1),
+                opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    z-index: -1;
+    transform: translate(100%, -25%) translate3d(0, 0, 0);
+}
+
+.wm-btn-storm:hover::before,
+.wm-btn-storm:hover::after {
+    opacity: 0.15;
+    transition: transform 0.2s cubic-bezier(0.02, 0.01, 0.47, 1),
+                opacity 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+.wm-btn-storm:hover::before {
+    transform: translate3d(50%, 0, 0) scale(0.9);
+}
+
+.wm-btn-storm:hover::after {
+    transform: translate(50%, 0) scale(1.1);
+}
+
+/* Marquee Animation */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 2rem;
+  mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 10%,
+    hsl(0 0% 0% / 1) 90%,
+    hsl(0 0% 0% / 0)
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 10%,
+    hsl(0 0% 0% / 1) 90%,
+    hsl(0 0% 0% / 0)
+  );
+}
+
+.marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: 2rem;
+  animation: marqueeX 35s linear infinite;
+}
+
+.marquee-content.reverse {
+  animation: marqueeXReverse 35s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+@keyframes marqueeXReverse {
+  from {
+    transform: translateX(calc(-100% - 2rem));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ================================================
+   PROJECTS SHOWCASE — Editorial / Magazine Style
+   ================================================ */
+
+.projects-showcase {
+  position: relative;
+  padding: 6rem 2rem 4rem;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .projects-showcase {
+    padding: 8rem 3rem 6rem;
+  }
+}
+@media (min-width: 1024px) {
+  .projects-showcase {
+    padding: 10rem 4rem 8rem;
+  }
+}
+
+/* --- Section Header --- */
+.projects-header {
+  max-width: 80rem;
+  margin: 0 auto 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.projects-header-line {
+  width: 60px;
+  height: 3px;
+  background: var(--text);
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.projects-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.projects-main-title {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text);
+}
+
+/* --- Sparkle icon --- */
+.projects-sparkle {
+  position: absolute;
+  top: 6rem;
+  right: 3rem;
+  color: var(--text);
+  opacity: 0.5;
+}
+@media (max-width: 768px) {
+  .projects-sparkle {
+    top: 2.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* --- Projects List --- */
+.projects-list {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+
+/* --- Single Project Card --- */
+.project-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 1024px) {
+  .project-card {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    padding: 4rem 0;
+  }
+}
+
+/* --- Project Info (Left Side) --- */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 2;
+}
+
+.project-number-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-number-line {
+  width: 48px;
+  height: 2.5px;
+  background: var(--text);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.project-number {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.project-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 420px;
+}
+
+/* Tech tags */
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.project-tech-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.project-tech-tag:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Action buttons */
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.project-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid var(--text);
+  cursor: pointer;
+}
+
+.project-view-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-view-btn:hover svg {
+  transform: translateX(3px);
+  transition: transform 0.3s ease;
+}
+
+.project-view-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.dark .project-view-btn {
+  background: #f0ede8;
+  color: #0d0d0d;
+  border-color: #f0ede8;
+}
+
+.dark .project-view-btn:hover {
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.08);
+}
+
+.project-github-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.project-github-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  transform: translateY(-2px);
+}
+
+/* --- Silver MacBook Mockup (Right Side) --- */
+.project-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.macbook-mockup {
+  width: 100%;
+  max-width: 580px;
+  position: relative;
+}
+
+/* Thin black bezel frame */
+.macbook-bezel {
+  position: relative;
+  background: #1c1c1e;
+  border-radius: 14px 14px 0 0;
+  padding: 22px 12px 10px;
+  border: 2px solid #2c2c2e;
+  border-bottom: none;
+}
+
+/* Camera dot */
+.macbook-camera {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3a3a3c;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* Screen area inside bezel */
+.macbook-screen {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+}
+
+.macbook-screen-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Silver aluminum body / keyboard area */
+.macbook-body {
+  width: 108%;
+  margin-left: -4%;
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    #c8c8ca 0%,
+    #b8b8ba 30%,
+    #aeaeb0 60%,
+    #a1a1a3 100%
+  );
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Hinge indentation */
+.macbook-hinge {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(
+    180deg,
+    #a5a5a7 0%,
+    #bdbdbe 50%,
+    #a5a5a7 100%
+  );
+  border-radius: 0 0 4px 4px;
+}
+
+/* Bottom lip */
+.macbook-lip {
+  width: 108%;
+  margin-left: -4%;
+  height: 6px;
+  background: linear-gradient(
+    180deg,
+    #a1a1a3 0%,
+    #9a9a9c 50%,
+    #929294 100%
+  );
+  border-radius: 0 0 10px 10px;
+}
+
+/* Drop shadow beneath laptop */
+.macbook-shadow {
+  width: 90%;
+  margin: 0 auto;
+  height: 20px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,0.12) 0%,
+    rgba(0,0,0,0.05) 50%,
+    transparent 80%
+  );
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+/* Dark mode — slightly adjust bezel and body tones */
+.dark .macbook-bezel {
+  background: #0f0f0f;
+  border-color: #232323;
+}
+
+.dark .macbook-camera {
+  background: #2a2a2c;
+}
+
+.dark .macbook-body {
+  background: linear-gradient(
+    180deg,
+    #7a7a7c 0%,
+    #6e6e70 30%,
+    #636365 60%,
+    #58585a 100%
+  );
+}
+
+.dark .macbook-hinge {
+  background: linear-gradient(
+    180deg,
+    #606062 0%,
+    #747476 50%,
+    #606062 100%
+  );
+}
+
+.dark .macbook-lip {
+  background: linear-gradient(
+    180deg,
+    #58585a 0%,
+    #515153 50%,
+    #4a4a4c 100%
+  );
+}
+
+.dark .macbook-shadow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.15) 50%,
+    transparent 80%
+  );
+}
+
+/* --- Decorative Watermark --- */
+.project-watermark {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  color: var(--text);
+  opacity: 0.03;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dark .project-watermark {
+  opacity: 0.04;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .projects-list {
+    gap: 5rem;
+  }
+  
+  .project-card {
+    padding: 2rem 0;
+    gap: 2rem;
+  }
+
+  .project-title {
+    font-size: 1.8rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+
+  .macbook-bezel {
+    border-radius: 10px 10px 0 0;
+    padding: 16px 8px 8px;
+  }
+
+  .macbook-camera {
+    width: 4px;
+    height: 4px;
+    top: 6px;
+  }
+
+  .macbook-body {
+    height: 9px;
+  }
+
+  .macbook-hinge {
+    width: 60px;
+    height: 3px;
+  }
+
+  .macbook-lip {
+    height: 4px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .project-watermark {
+    font-size: 2.5rem;
+    bottom: -0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-number-line {
+    width: 32px;
+  }
+
+  .project-view-btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.78rem;
+  }
+
+  .project-actions {
+    flex-wrap: wrap;
+  }
+
+  .macbook-bezel {
+    border-radius: 8px 8px 0 0;
+    padding: 12px 6px 6px;
+  }
+}
+
+/* ================================================
+   3D ABOUT CAROUSEL
+   ================================================ */
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.carousel {
+  position: relative;
+  width: 240px;
+  height: 340px;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 640px) {
+  .carousel {
+    width: 280px;
+    height: 420px;
+  }
+}
+
+.carousel-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.6s;
+}
+
+.carousel-card.active {
+  transform: translateZ(0px) rotateY(0deg);
+  z-index: 3;
+  opacity: 1;
+}
+
+.carousel-card.left {
+  transform: translateX(-40%) translateZ(-120px) rotateY(15deg);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.carousel-card.right {
+  transform: translateX(40%) translateZ(-120px) rotateY(-15deg);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.carousel-card:not(.active) img {
+  filter: brightness(0.6);
+}
+
+.carousel-card:not(.active):hover {
+  opacity: 0.8;
+}
